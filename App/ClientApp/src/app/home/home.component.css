@@ -1,0 +1,83 @@
+label {
+  margin-bottom: 0;
+}
+
+.home-container {
+    height: 100%;
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 2em;
+    border: 1px solid #cecece;
+    border-radius: 12px;
+}
+
+.home-container .logo {
+    width: 350px;
+    margin-top: 2em;
+    margin-bottom: 2.5em;
+}
+
+.worker-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #cecece;
+}
+
+.worker-container .title {
+  border-bottom: 1px solid #cecece;
+  font-weight: 600;
+  padding: .2em .5em;
+}
+
+.worker-container .content {
+    padding: .5em;
+}
+
+.worker-container .summary-grid,
+.worker-container .summary-grid th,
+.worker-container .summary-grid td
+{
+    border: 1px solid #cecece;
+}
+
+.worker-container .footer {
+  padding: .5em;
+  font-weight: 600;
+  border-top: 1px solid #cecece;
+}
+
+.electricity-container {
+    border: 1px solid #cecece;
+    width: 100%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    padding: .7em;
+}
+
+.electricity-container .title {
+    position: absolute;
+    margin-top: -26px;
+    margin-left: 5px;
+    background-color: #fff;
+}
+
+.electricity-container table,
+.electricity-container th,
+.electricity-container td {
+    border: 1px solid #cecece;
+}
+
+table {
+    width: 100%;
+}
+
+table td,
+table th {
+    padding: .2em .5em;
+}

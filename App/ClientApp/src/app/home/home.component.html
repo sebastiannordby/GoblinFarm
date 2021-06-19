@@ -1,0 +1,83 @@
+
+
+
+
+<div class="home-container">
+
+  <img class="logo" src="assets/images/goblin_logo.png"/>
+
+  <div class="electricity-container">
+    <label class="title">Lommebok</label>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Valuta</th>
+          <th>Beløp</th>
+          <th>Beløp(NOK)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let moneySummary of summary?.moneySummaries">
+          <td>{{ moneySummary?.currency }}</td>
+          <td>{{ moneySummary?.amount }}</td>
+          <td>{{ moneySummary?.amountInNOK }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="electricity-container">
+    <label class="title">Strømpris/Time</label>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Watt</th>
+          <th>Øre</th>
+          <th>Krone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ electricityResult?.accumulatedWattageUse }}</td>
+          <td>{{ electricityResult?.totalElectricityCostOre }}</td>
+          <td>{{ electricityResult?.totalElectricityCostKrone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-container *ngFor="let summary of summary?.workerSummaries">
+    <div class="worker-container">
+      <div class="title">
+        <label>{{ summary.workerName }}</label>
+      </div>
+      <div class="content">
+        <table class="summary-grid">
+          <thead>
+            <tr>
+              <th>Lommebok</th>
+              <th>Coin</th>
+              <th>NOK/Dag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let walletSummary of summary.walletSummaries">
+              <tr class="wallet-line">
+                <td>{{ walletSummary.walletName }}</td>
+                <td>{{ walletSummary.coin }}</td>
+                <td>{{ walletSummary.estimated24HNOK}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer">
+        <label>Daglig inntjening/NOK: {{ summary.estimated24HNOK }}</label>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
