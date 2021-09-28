@@ -1,6 +1,6 @@
 {
-  "name": "cannafarm",
-  "version": "0.0.0",
+  "name": "GoblinFarm",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

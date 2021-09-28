@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace GoblinFarm.EF
 {
@@ -6,7 +7,7 @@ namespace GoblinFarm.EF
     {
         public DbSet<TelldusAccumulatedSensorLog> TelldusAccumulatedSensorLogs { get; set; }
 
-        public GoblinFarmContext(DbContextOptions options) : base(options)
+        public GoblinFarmContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             ChangeTracker.AutoDetectChangesEnabled = false;
             ChangeTracker.LazyLoadingEnabled = false;

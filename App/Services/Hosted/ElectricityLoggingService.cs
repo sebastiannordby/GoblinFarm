@@ -48,7 +48,7 @@ namespace App.Services.Hosted
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _timer = new Timer(SaveData, null, TimeSpan.Zero, TimeSpan.FromHours(1));
+            _timer = new Timer(SaveData, null, TimeSpan.FromMinutes(2), TimeSpan.FromHours(1));
             return Task.CompletedTask;
         }
 

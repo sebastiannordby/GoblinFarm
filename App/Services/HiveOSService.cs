@@ -92,15 +92,3 @@ namespace GoblinFarm.Services
         public T Data { get; set; }
     }
 }
-
-
-//request.AddJsonBody(new
-//{
-//    login = "Cyllon",
-//    password = "Vannmelon1029.-",
-//});
-
-//request.AddBody(new
-//{
-//    api_key = "cannafarm_token_1111_xxx"
-//});

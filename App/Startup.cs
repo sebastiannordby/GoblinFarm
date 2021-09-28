@@ -10,7 +10,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
 
 namespace GoblinFarm
 {
@@ -39,11 +44,17 @@ namespace GoblinFarm
             });
 
 
+            services.AddCors();
             services.AddDbContext<GoblinFarmContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
+
+            //services.Configure<ForwardedHeadersOptions>(options =>
+            //{
+            //    options.KnownProxies.Add(IPAddress.Parse("192.168.10.192"));
+            //});
 
             services.AddScoped<ITelldusSensorService, TelldusSensorService>();
             services.AddScoped<IHiveOSService, HiveOSService>();
@@ -59,6 +70,11 @@ namespace GoblinFarm
         {
             InitializeDatabase(app);
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,10 +82,8 @@ namespace GoblinFarm
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -105,13 +119,15 @@ namespace GoblinFarm
             {
                 var appDbContext = serviceScope.ServiceProvider.GetRequiredService<GoblinFarmContext>();
 
+                
+
                 try
                 {
                     appDbContext.Database.Migrate();
                 }
                 catch (Exception exception)
                 {
-                    var hell = exception;
+                    throw exception;
                 }
             }
         }
